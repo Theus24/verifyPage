@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070d">
+  <title>LDA Verify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="snow.css">
+</head>
+<body class="is-loading is-intro-pending">
+  <div class="preloader" aria-label="Carregando verificacao" aria-live="polite">
+    <div class="loader-card">
+      <div class="loader-card__header">
+        <div class="loader-card__mark">
+          <img src="cardmark/a.png" alt="LDA" />
+        </div>
+        <div>
+          <span>Verificação Externa</span>
+          <strong>Inicializando ambiente seguro</strong>
+        </div>
+      </div>
+
+      <div class="loader-card__body">
+        <div class="loader-card__meta">
+          <span class="loader-card__status">Preparando interface...</span>
+          <strong class="loader-card__percent">0%</strong>
+        </div>
+
+        <div class="loader-card__track" aria-hidden="true">
+          <span class="loader-card__bar"></span>
+        </div>
+
+        <div class="loader-card__terminal" aria-label="Eventos de carregamento">
+          <span class="loader-card__line">Aguardando processo de boot...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page" aria-labelledby="verify-title">
+    <div class="page__shade" aria-hidden="true"></div>
+    <div class="page__grid" aria-hidden="true"></div>
+
+    <section class="verify" aria-label="Verificacao externa Discord">
+      <div class="verify__shell">
+        <div class="brand" aria-label="LDA">
+          <span class="brand__mark">LDA</span>
+          <span class="brand__label">External Verify</span>
+        </div>
+
+        <article class="verify__card">
+          <div class="verify__status" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="verify__orb verify__orb--one" aria-hidden="true"></div>
+          <div class="verify__orb verify__orb--two" aria-hidden="true"></div>
+
+          <div class="verify__content">
+            <div class="verify__badge">
+              <span></span>
+              Discord OAuth 2.0
+            </div>
+
+            <h1 id="verify-title">Verificacao externa</h1>
+            <p class="verify__lead">
+              Conecte sua conta Discord para confirmar sua identidade e liberar o acesso ao servidor LDA. 🌟
+            </p>
+
+            <div class="verify__panel" aria-label="Detalhes da verificacao">
+              <div>
+                <span>Status</span>
+                <strong>Aguardando conexao</strong>
+              </div>
+              <div>
+                <span>By</span>
+                <strong>@slv.theus</strong>
+              </div>
+            </div>
+
+            <a class="verify__button" href="/auth/discord" aria-label="Verificar conta com Discord" draggable="false">
+              <span class="verify__button-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" draggable="false">
+                  <path d="M19.54 5.33A16.9 16.9 0 0 0 15.36 4l-.2.4a13.5 13.5 0 0 1 3.1 1.56 13.7 13.7 0 0 0-12.52 0A13.5 13.5 0 0 1 8.84 4.4L8.64 4a16.9 16.9 0 0 0-4.18 1.33C1.82 9.25 1.1 13.08 1.46 16.86A16.8 16.8 0 0 0 6.6 19.5l.63-.88a10.8 10.8 0 0 1-1.62-.77l.38-.3a12.1 12.1 0 0 0 12.02 0l.38.3a10.8 10.8 0 0 1-1.62.77l.63.88a16.8 16.8 0 0 0 5.14-2.64c.43-4.38-.73-8.17-3-11.53ZM8.32 14.54c-1 0-1.82-.93-1.82-2.07s.8-2.07 1.82-2.07c1 0 1.83.93 1.82 2.07 0 1.14-.81 2.07-1.82 2.07Zm7.36 0c-1 0-1.82-.93-1.82-2.07s.8-2.07 1.82-2.07c1 0 1.82.93 1.82 2.07s-.81 2.07-1.82 2.07Z"/>
+                </svg>
+              </span>
+              <span>Verificar com Discord</span>
+              <span class="verify__arrow" aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+        </article>
+
+        <div class="verify__steps" aria-label="Etapas da verificacao">
+          <span>Conta</span>
+          <span>OAuth</span>
+          <span>Acesso</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="animations.js" defer></script>
+  <script src="snow.js" defer></script>
+</body>
+</html>
