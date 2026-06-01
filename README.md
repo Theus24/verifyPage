@@ -1,47 +1,112 @@
-# LDA Verify — Discord OAuth2 Verification
+# 🔐 LDA Verify — Verificação Externa para Discord
 
-This project implements a simple Discord OAuth2 verification flow that adds a "Verificado" role to users who authenticate.
+Sistema de verificação externa utilizando OAuth2 do Discord para autenticar usuários e conceder automaticamente o cargo **Verificado** dentro do servidor.
 
-Requirements
-- Node.js 16+
+## 📋 Requisitos
 
-Setup
-1. Copy `.env.example` to `.env` and fill values:
+* Node.js 16 ou superior
+* Bot adicionado ao servidor
+* Aplicação configurada no Discord Developer Portal
 
-- `DISCORD_CLIENT_ID` — OAuth2 client ID
-- `DISCORD_CLIENT_SECRET` — OAuth2 client secret
-- `DISCORD_BOT_TOKEN` — Bot token (the bot must be in the target guild)
-- `DISCORD_GUILD_ID` — Guild (server) ID
-- `VERIFIED_ROLE_ID` — Role ID to add (Verificado)
-- `BASE_URL` — Public URL of your server (used as redirect URI), e.g. `https://example.com`
-- `PORT` — optional
+---
 
-2. Install deps
+## 🚀 Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/Theus24/qualquer.git
+cd qualquer
+```
+
+Instale as dependências:
 
 ```bash
 npm install
 ```
 
-3. Start
+---
+
+## ⚙️ Configuração
+
+Copie o arquivo `.env.example` para `.env` e preencha as informações:
+
+```env
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+DISCORD_BOT_TOKEN=
+DISCORD_GUILD_ID=
+VERIFIED_ROLE_ID=
+BASE_URL=
+PORT=3000
+```
+
+### Variáveis
+
+| Variável              | Descrição                                   |
+| --------------------- | ------------------------------------------- |
+| DISCORD_CLIENT_ID     | ID da aplicação OAuth2                      |
+| DISCORD_CLIENT_SECRET | Chave secreta da aplicação                  |
+| DISCORD_BOT_TOKEN     | Token do bot                                |
+| DISCORD_GUILD_ID      | ID do servidor                              |
+| VERIFIED_ROLE_ID      | Cargo que será concedido após a verificação |
+| BASE_URL              | URL pública do sistema                      |
+| PORT                  | Porta da aplicação                          |
+
+---
+
+## ▶️ Inicialização
 
 ```bash
 npm start
 ```
 
-How it works
-- The bot sends an embed with a Link button pointing to `${BASE_URL}/login`.
-- The user signs-in with Discord (scopes `identify guilds.join`).
-- The server exchanges the code for an access token and calls Discord API to add the user to the guild and set the `VERIFIED_ROLE_ID`.
-- If adding via OAuth2 fails (user already in guild), the server tries to add the role using the bot client.
+Após iniciar, o sistema ficará disponível na URL definida em `BASE_URL`.
 
-Embed button example (discord.js v14)
+---
+
+## 🔍 Como funciona
+
+1. O usuário clica no botão **Verificar-se**.
+2. É redirecionado para o login oficial do Discord.
+3. Autoriza a aplicação utilizando OAuth2.
+4. O sistema obtém as informações da conta.
+5. O usuário é adicionado ao servidor (caso ainda não esteja).
+6. O cargo **Verificado** é atribuído automaticamente.
+
+Fluxo resumido:
+
+```text
+Usuário
+   ↓
+Login Discord OAuth2
+   ↓
+Autorização
+   ↓
+Validação
+   ↓
+Entrada no servidor
+   ↓
+Cargo Verificado
+```
+
+---
+
+## 💻 Exemplo de botão de verificação
 
 ```js
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
+const {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  EmbedBuilder
+} = require('discord.js');
 
 const embed = new EmbedBuilder()
-  .setTitle('Verificação externa')
-  .setDescription('Clique para verificar sua conta com nosso site seguro');
+  .setTitle('Verificação Externa')
+  .setDescription(
+    'Clique no botão abaixo para verificar sua conta.'
+  );
 
 const row = new ActionRowBuilder().addComponents(
   new ButtonBuilder()
@@ -50,10 +115,31 @@ const row = new ActionRowBuilder().addComponents(
     .setURL(`${process.env.BASE_URL}/login`)
 );
 
-channel.send({ embeds: [embed], components: [row] });
+channel.send({
+  embeds: [embed],
+  components: [row]
+});
 ```
 
-Notes
-- The bot needs `Manage Roles` permission and must have a role higher than `VERIFIED_ROLE_ID` to assign it.
-- If using privileged intents (Guild Members), enable them in the developer portal.
-- Ensure `BASE_URL` is the same redirect URI registered in the OAuth2 app settings.
+---
+
+## ⚠️ Observações
+
+* O bot precisa da permissão **Gerenciar Cargos**.
+* O cargo do bot deve estar acima do cargo de verificação.
+* Caso utilize intents privilegiadas, elas devem ser ativadas no Discord Developer Portal.
+* A URL definida em `BASE_URL` deve ser exatamente a mesma cadastrada nos Redirect URIs da aplicação.
+
+---
+
+## 🛡️ Segurança
+
+O sistema utiliza exclusivamente o OAuth2 oficial do Discord para autenticação dos usuários.
+
+Nenhuma senha é armazenada ou processada pelo projeto.
+
+---
+
+## 📜 Licença
+
+Projeto desenvolvido para fins educacionais e administrativos de servidores Discord.
