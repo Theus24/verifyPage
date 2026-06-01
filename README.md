@@ -15,8 +15,8 @@ Sistema de verificação externa utilizando OAuth2 do Discord para autenticar us
 Clone o repositório:
 
 ```bash
-git clone https://github.com/Theus24/qualquer.git
-cd qualquer
+git clone https://github.com/Theus24/verifyPage.git
+cd verifyPage
 ```
 
 Instale as dependências:
